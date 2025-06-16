@@ -26,6 +26,7 @@ import BasicLayout from '@/layouts/basic-layout';
 import frameOut from './modules/frameOut';
 import work from './modules/work';
 import content from './modules/content';
+import musicLibrary from './modules/musicLibrary';
 
 /**
  * 在主框架内显示
@@ -188,6 +189,7 @@ const frameIn = [
   system,
   statistic,
   work,
+  musicLibrary,
   content
 ];
 
