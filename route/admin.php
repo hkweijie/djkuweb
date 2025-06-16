@@ -932,8 +932,23 @@ Route::group('adminapi', function () {
         //社区虚拟评论表单
         Route::get('comment/fictitious/:id', 'v1.community.CommunityComment/fictitiousComment')->option(['real_name' => '社区虚拟评论表单']);
         //社区保存虚拟评论
-        Route::post('comment/save_fictitious', 'v1.community.CommunityComment/saveFictitiousComment')->option(['real_name' => '社区保存虚拟评论']);
+    Route::post('comment/save_fictitious', 'v1.community.CommunityComment/saveFictitiousComment')->option(['real_name' => '社区保存虚拟评论']);
 
+    })->middleware([
+        \app\http\middleware\AllowOriginMiddleware::class,
+        \app\http\middleware\admin\AdminAuthTokenMiddleware::class,
+        \app\http\middleware\admin\AdminCkeckRoleMiddleware::class,
+        \app\http\middleware\admin\AdminLogMiddleware::class
+    ]);
+
+    /**
+     * 音乐库路由
+     */
+    Route::group('music', function () {
+        Route::get('library/list', 'v1.music.MusicLibrary/index')->option(['real_name' => '音乐列表']);
+        Route::post('library/save', 'v1.music.MusicLibrary/save')->option(['real_name' => '添加音乐']);
+        Route::post('library/update/:id', 'v1.music.MusicLibrary/update')->option(['real_name' => '修改音乐']);
+        Route::delete('library/delete/:id', 'v1.music.MusicLibrary/delete')->option(['real_name' => '删除音乐']);
     })->middleware([
         \app\http\middleware\AllowOriginMiddleware::class,
         \app\http\middleware\admin\AdminAuthTokenMiddleware::class,
