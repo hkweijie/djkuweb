@@ -12,7 +12,9 @@ import dashboard from './modules/dashboard';
 
 // 系统
 import log from './modules/log';
+import musicLibrary from './modules/musicLibrary';
 
 export default [
-    log
+    log,
+    musicLibrary
 ];
