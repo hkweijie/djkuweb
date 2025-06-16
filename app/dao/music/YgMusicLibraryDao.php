@@ -30,10 +30,7 @@ class YgMusicLibraryDao extends BaseDao
     {
         return parent::search($where, $search)
             ->when(isset($where['keyword']) && $where['keyword'] !== '', function($query) use($where){
-                $query->whereLike('title|artist', "%{$where['keyword']}%");
-            })
-            ->when(isset($where['status']) && $where['status'] !== '', function($query) use($where){
-                $query->where('status', $where['status']);
+                $query->whereLike('title_en|title_cn|artist_en|artist_cn|album|file_name', "%{$where['keyword']}%");
             });
     }
 

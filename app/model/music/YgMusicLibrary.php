@@ -16,26 +16,14 @@ class YgMusicLibrary extends BaseModel
     protected $name = 'yg_music_library';
 
     /**
-     * 标题搜索器
+     * 关键字搜索器
      * @param Model $query
      * @param $value
      */
-    public function searchTitleAttr($query, $value)
+    public function searchKeywordAttr($query, $value)
     {
         if ($value !== '') {
-            $query->whereLike('title', "%{$value}%");
-        }
-    }
-
-    /**
-     * 状态搜索器
-     * @param Model $query
-     * @param $value
-     */
-    public function searchStatusAttr($query, $value)
-    {
-        if ($value !== '') {
-            $query->where('status', $value);
+            $query->whereLike('title_en|title_cn|artist_en|artist_cn|album|file_name', "%{$value}%");
         }
     }
 }

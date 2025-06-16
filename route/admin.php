@@ -108,6 +108,7 @@ Route::group('adminapi', function () {
         \app\http\middleware\admin\AdminLogMiddleware::class
     ]);
 
+
     /**
      * 企业微信相关
      */
@@ -2583,9 +2584,28 @@ Route::group('adminapi', function () {
             //售后订单退款
             Route::put('refund/:id', 'v1.supplier.RefundOrder/update_refund')->name('StoreOrderUpdateRefund')->option(['real_name' => '售后订单退款']);
             //售后详情
-            Route::get('detail/:id', 'v1.supplier.RefundOrder/refundDetail')->option(['real_name' => '售后订单详情']);
-        });
+        Route::get('detail/:id', 'v1.supplier.RefundOrder/refundDetail')->option(['real_name' => '售后订单详情']);
+    });
 
+})->middleware([
+        \app\http\middleware\AllowOriginMiddleware::class,
+        \app\http\middleware\admin\AdminAuthTokenMiddleware::class,
+        \app\http\middleware\admin\AdminCkeckRoleMiddleware::class,
+        \app\http\middleware\admin\AdminLogMiddleware::class
+    ]);
+
+    /**
+     * 音乐库管理 相关路由
+     */
+    Route::group('music/library', function () {
+        // 音乐列表
+        Route::get('list', 'v1.music.MusicLibrary/index')->name('musicLibraryList')->option(['real_name' => '音乐库列表']);
+        // 添加音乐
+        Route::post('save', 'v1.music.MusicLibrary/save')->name('musicLibrarySave')->option(['real_name' => '保存音乐']);
+        // 更新音乐
+        Route::post('update/:id', 'v1.music.MusicLibrary/update')->name('musicLibraryUpdate')->option(['real_name' => '更新音乐']);
+        // 删除音乐
+        Route::delete('delete/:id', 'v1.music.MusicLibrary/delete')->name('musicLibraryDelete')->option(['real_name' => '删除音乐']);
     })->middleware([
         \app\http\middleware\AllowOriginMiddleware::class,
         \app\http\middleware\admin\AdminAuthTokenMiddleware::class,
