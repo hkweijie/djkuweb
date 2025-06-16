@@ -20,10 +20,12 @@ export default {
       list: [],
       loading: false,
       columns: [
-        { title: 'ID', key: 'id', width: 80 },
-        { title: '标题', key: 'title' },
-        { title: '歌手', key: 'artist' },
-        { title: '状态', key: 'status' },
+        { title: 'ID', key: 'id', width: 60 },
+        { title: '文件名', key: 'file_name' },
+        { title: '标题(中文)', key: 'title_cn' },
+        { title: '歌手(中文)', key: 'artist_cn' },
+        { title: '时长', key: 'duration' },
+        { title: '审核', key: 'is_verified' },
         { title: '操作', slot: 'action', width: 150 }
       ]
     }
